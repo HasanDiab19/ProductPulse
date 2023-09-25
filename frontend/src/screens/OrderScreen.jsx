@@ -1,12 +1,5 @@
 import { Link, useParams } from "react-router-dom";
-import {
-  Row,
-  Col,
-  ListGroup,
-  Image,
-  Button,
-  Card,
-} from "react-bootstrap";
+import { Row, Col, ListGroup, Image, Button, Card } from "react-bootstrap";
 import { PayPalButtons, usePayPalScriptReducer } from "@paypal/react-paypal-js";
 import Message from "../components/Message";
 import Loader from "../components/Loader";
@@ -210,27 +203,28 @@ const OrderScreen = () => {
                   <Col>${order.totalPrice}</Col>
                 </Row>
               </ListGroup.Item>
-              {!order.isPaid && (
-                <ListGroup.Item>
-                  {loadingPay && <Loader />}
-                  {isPending ? (
-                    <Loader />
-                  ) : (
-                    <div>
-                      {/* <Button
+              {!order.isPaid &&
+                order.user._id.toString() === userInfo._id.toString() && (
+                  <ListGroup.Item>
+                    {loadingPay && <Loader />}
+                    {isPending ? (
+                      <Loader />
+                    ) : (
+                      <div>
+                        {/* <Button
                         style={{ marginBottom: "10px" }}
                       >
                         Test Pay Order
                       </Button> */}
-                      <PayPalButtons
-                        createOrder={createOrder}
-                        onApprove={onApprove}
-                        onError={onError}
-                      ></PayPalButtons>
-                    </div>
-                  )}
-                </ListGroup.Item>
-              )}
+                        <PayPalButtons
+                          createOrder={createOrder}
+                          onApprove={onApprove}
+                          onError={onError}
+                        ></PayPalButtons>
+                      </div>
+                    )}
+                  </ListGroup.Item>
+                )}
               {loadingDeliver && <Loader />}
               {userInfo &&
                 userInfo.isAdmin &&
