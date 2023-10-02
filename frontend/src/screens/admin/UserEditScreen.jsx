@@ -85,7 +85,7 @@ const UserEditScreen = () => {
                 type="checkbox"
                 label="isAdmin"
                 checked={isAdmin}
-                onChange={(e) => setIsAdmin(e.target.value)}
+                onChange={(e) => setIsAdmin(!isAdmin)}
               ></Form.Check>
             </Form.Group>
 
